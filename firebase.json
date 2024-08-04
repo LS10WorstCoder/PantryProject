@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "pantryproject/build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
