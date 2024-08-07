@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import './App.css';
 import { Auth } from "./components/auth.js";
 import { auth, db, storage } from "./configs/firebaseConfig";
@@ -11,6 +11,8 @@ function App() {
   const [newNumberOf, setNewNumberOf] = useState("");
   const [updatedNumberOf, setUpdatedNumberOf] = useState("");
   const [fileUpload, setFileUpload] = useState(null);
+
+  let collectionId = "";
 
   const itemsCollectionRef = collection(db, "FoodItems");
 
@@ -56,9 +58,9 @@ function App() {
     getItemList();
   };
 
-  const uploadFile = async () => {
+  const uploadFile = async (name) => {
     if (!fileUpload) return;
-    const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`);
+    const filesFolderRef = ref(storage, `projectFiles/${name}/${fileUpload.name}`);
     try {
       await uploadBytes(filesFolderRef, fileUpload);
     } catch (err) {
@@ -75,7 +77,7 @@ function App() {
           onChange={(e) => setNewItemName(e.target.value)}
         />
         <input
-          placeholder="Number Of"
+          placeholder="Number Of" 
           type="number"
           onChange={(e) => setNewNumberOf(e.target.value)}
         />
@@ -91,13 +93,15 @@ function App() {
               onChange={(e) => setUpdatedNumberOf(e.target.value)}
             />
             <button className="secondary" onClick={() => onChangeNumberOf(item.id)}>Update # Of</button>
+            <input type="file" onChange={(e) => setFileUpload(e.target.files[0])} />
+            <button className="primary" onClick={uploadFile(item.name)}>Upload A Picture</button>
           </div>
         ))}
       </div>
-      <div>
+      {/* <div>
         <input type="file" onChange={(e) => setFileUpload(e.target.files[0])} />
         <button className="primary" onClick={uploadFile}>Upload File</button>
-      </div>
+      </div> */}
     </div>
   );
 }

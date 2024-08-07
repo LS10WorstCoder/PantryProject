@@ -37,8 +37,6 @@
   }
 } */
 
-/* App.css */
-
 /* General styles */
 body {
   font-family: 'Roboto', sans-serif;
@@ -61,6 +59,9 @@ body {
   width: 800px;
   margin: 20px;
   box-sizing: border-box; /* Ensure padding is included in width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Input and button styles */
@@ -130,20 +131,23 @@ button.delete:hover {
   max-height: 400px; /* Adjusted height */
   overflow-y: auto;
   padding: 5px;
-  border: 2px solid #ddd;
+  border: none; /* Remove border */
   border-radius: 8px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .app > div > div {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   background-color: #e7f3ff;
   padding: 20px;
-  border: 2px solid #007bff;
+  /* Remove border */
   border-radius: 8px;
   margin: 15px 0;
   transition: background-color 0.3s, transform 0.2s;
@@ -159,11 +163,13 @@ button.delete:hover {
   font-size: 22px;
   font-weight: 500;
   color: #007bff;
+  text-align: center;
 }
 
 .app > div > div > p {
   margin: 0 0 10px 0;
   color: #333;
+  text-align: center;
 }
 
 /* Footer with auth buttons */
